@@ -1,2 +1,6 @@
-# project-dir-tools
+# gen-project
+自动生成项目目录结构工具
 
+## 使用方式
+1. 安装工具
+2. 生成目录

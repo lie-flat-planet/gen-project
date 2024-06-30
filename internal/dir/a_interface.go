@@ -1,7 +1,7 @@
 package dir
 
 type IDIR interface {
-	RootPath() string
+	SubPath() string
 	Path() string
 	File() string
 	FileContent() string

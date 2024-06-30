@@ -14,7 +14,7 @@ func NewMod() *Mod {
 	return new(Mod)
 }
 
-func (m *Mod) RootPath() string {
+func (m *Mod) SubPath() string {
 	return ""
 }
 

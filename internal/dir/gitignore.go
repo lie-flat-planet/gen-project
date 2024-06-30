@@ -14,7 +14,7 @@ func NewGitIgnore() *GitIgnore {
 	return new(GitIgnore)
 }
 
-func (g *GitIgnore) RootPath() string {
+func (g *GitIgnore) SubPath() string {
 	return ""
 }
 

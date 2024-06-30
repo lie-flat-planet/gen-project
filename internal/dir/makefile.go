@@ -14,7 +14,7 @@ func NewMakefile() *Makefile {
 	return new(Makefile)
 }
 
-func (m *Makefile) RootPath() string {
+func (m *Makefile) SubPath() string {
 	return ""
 }
 

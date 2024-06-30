@@ -12,7 +12,7 @@ func NewStatusError() *StatusError {
 	return new(StatusError)
 }
 
-func (p *StatusError) RootPath() string {
+func (p *StatusError) SubPath() string {
 	return "pkg/constant/"
 }
 
