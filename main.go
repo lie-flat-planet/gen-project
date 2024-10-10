@@ -2,12 +2,12 @@ package main
 
 import (
 	"fmt"
-	"github.com/lie-flat-planet/gen-project/cmd"
+	"github.com/lie-flat-planet/gen-project/command"
 	"os"
 )
 
 func main() {
-	if err := cmd.DirCMD.Execute(); err != nil {
+	if err := command.Dir.Execute(); err != nil {
 		fmt.Println(err)
 		os.Exit(-1)
 	}

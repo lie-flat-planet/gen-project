@@ -1,4 +1,4 @@
-package cmd
+package command
 
 import (
 	"github.com/lie-flat-planet/gen-project/internal/file"
@@ -10,7 +10,7 @@ const (
 )
 
 var (
-	DirCMD = &cobra.Command{
+	Dir = &cobra.Command{
 		Use:     "dir-tools",
 		Short:   "生成工程目录结构",
 		Version: VERSION,
