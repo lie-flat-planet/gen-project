@@ -1,9 +1,10 @@
-package dir
+package _interface
 
 import "github.com/lie-flat-planet/gen-project/file"
 
 type IDir interface {
 	Name() string
-	ListChildren() []IDir
-	ListFile() []file.IFile
+	Children() []IDir
+	Files() []file.IFile
+	Create(path string) error
 }
