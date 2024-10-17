@@ -13,19 +13,21 @@ func (*Docs) Content() string {
 package docs
 
 import "github.com/swaggo/swag"
-const docTemplate = ` + `{
+
+const docTemplate = ` + "`" + `{
 	"schemes": {{ marshal .Schemes }},
 	"swagger": "2.0",
-		"info": {
+	"info": {
 		"description": "{{escape .Description}}",
-			"title": "{{.Title}}",
-			"contact": {},
+		"title": "{{.Title}}",
+		"contact": {},
 		"version": "{{.Version}}"
 	},
 	"host": "{{.Host}}",
-		"basePath": "{{.BasePath}}",
-		"paths": {}
-}` + `
+	"basePath": "{{.BasePath}}",
+	"paths": {}
+}` + "`" + `
+
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
 	Version:          "",

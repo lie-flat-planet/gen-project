@@ -1,28 +1,34 @@
 package file
 
-import "strings"
+import (
+	"fmt"
+	"github.com/lie-flat-planet/gen-project/global"
+	"strings"
+)
 
 type Route struct{}
 
 func (route *Route) Name() string {
-	return "z_route.go"
+	return "router.go"
 }
 
 func (route *Route) Content() string {
-	return strings.TrimSpace(`
+	moduleName := global.GetModuleName()
+	projectName := global.GetProjectName()
+	return strings.TrimSpace(fmt.Sprintf(`
 package router
 
 import (
 	"github.com/gin-gonic/gin"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
-	"test-gen-project/api/router/demo"
-	"test-gen-project/cmd/test-gen-project/docs"
-	"test-gen-project/config"
+	"%s/api/router/demo"
+	"%s/cmd/%s/docs"
+	"%s/config"
 )
 
 func NewRoot(r *gin.Engine) {
-	basePath := r.Group("/demo/api")
+	basePath := r.Group("/%s/api")
 	v1 := basePath.Group("/v1")
 
 	demo.Router(v1)
@@ -54,7 +60,7 @@ func (r *router) registerHandler() *router {
 }
 
 func (r *router) swagger() *router {
-	docs.SwaggerInfo.BasePath = "/demo/api/v1"
+	docs.SwaggerInfo.BasePath = "/%s/api/v1"
 	r.ginEngine.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	return r
@@ -63,5 +69,5 @@ func (r *router) swagger() *router {
 func (r *router) getEngin() *gin.Engine {
 	return r.ginEngine
 }
-`)
+`, moduleName, moduleName, projectName, moduleName, projectName, projectName))
 }

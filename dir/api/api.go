@@ -1,6 +1,9 @@
 package api
 
 import (
+	"github.com/lie-flat-planet/gen-project/dir/api/controller"
+	"github.com/lie-flat-planet/gen-project/dir/api/request"
+	"github.com/lie-flat-planet/gen-project/dir/api/response"
 	"github.com/lie-flat-planet/gen-project/dir/api/router"
 	"github.com/lie-flat-planet/gen-project/file"
 	_interface "github.com/lie-flat-planet/gen-project/generator/interface"
@@ -15,6 +18,9 @@ func (a *API) GetName() string {
 
 func (a *API) Children() []_interface.IDir {
 	return []_interface.IDir{
+		&controller.Controller{},
+		&request.Request{},
+		&response.Response{},
 		&router.Router{},
 	}
 }

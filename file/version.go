@@ -5,7 +5,7 @@ import "strings"
 type Version struct{}
 
 func (v *Version) Name() string {
-	return "version.go"
+	return ".version"
 }
 
 func (v *Version) Content() string {

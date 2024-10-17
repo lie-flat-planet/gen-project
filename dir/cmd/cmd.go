@@ -1,9 +1,10 @@
 package cmd
 
 import (
-	"github.com/lie-flat-planet/gen-project/dir/api/router"
+	"github.com/lie-flat-planet/gen-project/dir/cmd/project"
 	"github.com/lie-flat-planet/gen-project/file"
 	_interface "github.com/lie-flat-planet/gen-project/generator/interface"
+	"github.com/lie-flat-planet/gen-project/global"
 )
 
 type CMD struct {
@@ -15,7 +16,9 @@ func (*CMD) GetName() string {
 
 func (*CMD) Children() []_interface.IDir {
 	return []_interface.IDir{
-		&router.Router{},
+		&project.Project{
+			Name: global.GetProjectName(),
+		},
 	}
 }
 

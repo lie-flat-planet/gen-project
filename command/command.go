@@ -2,6 +2,7 @@ package command
 
 import (
 	"fmt"
+	"github.com/lie-flat-planet/gen-project/generator"
 	"github.com/spf13/cobra"
 )
 
@@ -34,19 +35,15 @@ var (
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if len(args) < 1 {
 				return fmt.Errorf("缺少项目名参数")
-				//panic("缺少项目名参数")
 			}
 
 			if args[0] == "" {
 				return fmt.Errorf("项目名参数不能为空")
-				//panic("项目名参数不能为空")
 			}
 
-			fmt.Println("args[0]:", args[0])
-
-			//if err := generator.Generate("./", args[0]); err != nil {
-			//	panic(err)
-			//}
+			if err := generator.Generate("./", args[0]); err != nil {
+				panic(err)
+			}
 
 			return nil
 		},

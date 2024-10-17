@@ -1,6 +1,10 @@
 package file
 
-import "strings"
+import (
+	"fmt"
+	"github.com/lie-flat-planet/gen-project/global"
+	"strings"
+)
 
 type DemoHandler struct{}
 
@@ -9,14 +13,16 @@ func (*DemoHandler) Name() string {
 }
 
 func (*DemoHandler) Content() string {
-	return strings.TrimSpace(`
+	moduleName := global.GetModuleName()
+
+	return strings.TrimSpace(fmt.Sprintf(`
 package demo
 
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/lie-flat-planet/httputil"
-	"test-gen-project/api/controller"
-	"test-gen-project/config"
+	"%s/api/controller"
+	"%s/config"
 )
 
 func FetchFirst(ctx *gin.Context) {
@@ -32,5 +38,5 @@ func FetchFirst(ctx *gin.Context) {
 
 	return
 }
-`)
+`, moduleName, moduleName))
 }
