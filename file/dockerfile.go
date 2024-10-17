@@ -27,7 +27,7 @@ RUN make build WORKSPACE=%s
 # runtime
 FROM alpine:latest
 
-ARG PROJECT_NAME=test-gen-project
+ARG PROJECT_NAME=%s
 
 COPY --from=builder /go/src/cmd/${PROJECT_NAME}/${PROJECT_NAME} /go/bin/${PROJECT_NAME}
 
@@ -35,5 +35,5 @@ EXPOSE 80
 
 WORKDIR /go/bin
 ENTRYPOINT ["/go/bin/%s"]
-`, projectName, projectName))
+`, projectName, projectName, projectName))
 }

@@ -1,7 +1,7 @@
 package command
 
 import (
-	"github.com/lie-flat-planet/gen-project/internal/file"
+	"github.com/lie-flat-planet/gen-project/generator"
 	"github.com/spf13/cobra"
 )
 
@@ -23,7 +23,7 @@ var (
 				panic("项目名参数不能为空")
 			}
 
-			if err := file.CreateProjectDir(args[0]); err != nil {
+			if err := generator.Generate(args[0]); err != nil {
 				panic(err)
 			}
 		},

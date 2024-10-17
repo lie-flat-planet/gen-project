@@ -1,4 +1,4 @@
-package Generator
+package generator
 
 import "github.com/lie-flat-planet/gen-project/global"
 

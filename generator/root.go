@@ -1,9 +1,13 @@
-package Generator
+package generator
 
 import (
-	"github.com/lie-flat-planet/gen-project/dir/api/route"
-	_interface "github.com/lie-flat-planet/gen-project/dir/interface"
+	"github.com/lie-flat-planet/gen-project/dir/_internal"
+	"github.com/lie-flat-planet/gen-project/dir/api"
+	"github.com/lie-flat-planet/gen-project/dir/cmd"
+	"github.com/lie-flat-planet/gen-project/dir/config"
+	"github.com/lie-flat-planet/gen-project/dir/pkg"
 	"github.com/lie-flat-planet/gen-project/file"
+	_interface "github.com/lie-flat-planet/gen-project/generator/interface"
 )
 
 type root struct {
@@ -22,7 +26,11 @@ func (root *root) GetName() string {
 
 func (root *root) Children() []_interface.IDir {
 	return []_interface.IDir{
-		&route.Route{},
+		&api.API{},
+		&cmd.CMD{},
+		&config.Config{},
+		&_internal.Internal{},
+		&pkg.PKG{},
 	}
 }
 

@@ -1,12 +1,12 @@
 package example
 
 import (
-	"github.com/lie-flat-planet/gen-project/dir/Generator"
+	"github.com/lie-flat-planet/gen-project/generator"
 	"testing"
 )
 
 func TestDirGenerate(t *testing.T) {
-	err := Generator.Generate("./", "github.com/lie-flat-planet/gen-demo")
+	err := generator.Generate("./", "github.com/lie-flat-planet/gen-demo")
 	//err := dir.Generate("./", "liming")
 	if err != nil {
 		t.Fatal(err)

@@ -1,4 +1,4 @@
-package api
+package cmd
 
 import (
 	"github.com/lie-flat-planet/gen-project/dir/api/router"
@@ -6,23 +6,23 @@ import (
 	_interface "github.com/lie-flat-planet/gen-project/generator/interface"
 )
 
-type API struct {
+type CMD struct {
 }
 
-func (a *API) GetName() string {
-	return "api"
+func (*CMD) GetName() string {
+	return "cmd"
 }
 
-func (a *API) Children() []_interface.IDir {
+func (*CMD) Children() []_interface.IDir {
 	return []_interface.IDir{
 		&router.Router{},
 	}
 }
 
-func (a *API) Files() []file.IFile {
+func (*CMD) Files() []file.IFile {
 	return nil
 }
 
-func (a *API) Create(basePath string) error {
-	return _interface.Create(basePath, a)
+func (cmd *CMD) Create(basePath string) error {
+	return _interface.Create(basePath, cmd)
 }
