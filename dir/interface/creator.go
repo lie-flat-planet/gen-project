@@ -8,7 +8,7 @@ import (
 
 func Create(basePath string, dir IDir) error {
 	// Create current directory
-	currentPath := filepath.Join(basePath, dir.Name())
+	currentPath := filepath.Join(basePath, dir.GetName())
 	if err := os.MkdirAll(currentPath, os.ModePerm); err != nil {
 		return fmt.Errorf("failed to create directory %s: %w", currentPath, err)
 	}

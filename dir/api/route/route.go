@@ -6,10 +6,14 @@ import (
 )
 
 type Route struct {
+	Name string
 }
 
-func (r *Route) Name() string {
-	return "route"
+func (r *Route) GetName() string {
+	if r.Name == "" {
+		return "route"
+	}
+	return r.Name
 }
 
 func (r *Route) Children() []_interface.IDir {

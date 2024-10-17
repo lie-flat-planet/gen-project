@@ -1,6 +1,9 @@
 package api
 
-import "github.com/lie-flat-planet/gen-project/file"
+import (
+	_interface "github.com/lie-flat-planet/gen-project/dir/interface"
+	"github.com/lie-flat-planet/gen-project/file"
+)
 
 type API struct {
 }
@@ -9,8 +12,8 @@ func (a *API) Name() string {
 	return "api"
 }
 
-func (a *API) Children() []IDir {
-	return []IDir{
+func (a *API) Children() []_interface.IDir {
+	return []_interface.IDir{
 		&Route{},
 	}
 }

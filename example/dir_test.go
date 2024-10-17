@@ -6,7 +6,7 @@ import (
 )
 
 func TestDirGenerate(t *testing.T) {
-	err := Generator.Generate("./", "liming")
+	err := Generator.Generate("./", "github.com/lie-flat-planet/gen-demo")
 	//err := dir.Generate("./", "liming")
 	if err != nil {
 		t.Fatal(err)
