@@ -14,9 +14,9 @@ gen-project github.com/your-group/your-project-name
 
 3. 生成工程后进入工程目录, 按如下步骤即可启动工程
 
-第一步: 下载依赖到本地：
+第一步: 进入工程并下载依赖到本地：
 ```shell
-go mod tidy
+cd your-project-name && go mod tidy
 ```
 
 第二步: 修改数据库，redis的配置信息:
