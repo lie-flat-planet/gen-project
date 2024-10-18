@@ -3,7 +3,10 @@ package command
 import (
 	"fmt"
 	"github.com/lie-flat-planet/gen-project/generator"
+	"github.com/lie-flat-planet/gen-project/global"
 	"github.com/spf13/cobra"
+	"os"
+	"os/exec"
 )
 
 const (
@@ -45,6 +48,25 @@ var (
 				panic(err)
 			}
 
+			return nil
+		},
+		PostRunE: func(cmd *cobra.Command, args []string) error { // git init
+			// 切换目录
+			{
+				projectPath := fmt.Sprintf("./%s", global.ParseProjectName(args[0]))
+				if err := os.Chdir(projectPath); err != nil {
+					return err
+				}
+				cwd, _ := os.Getwd()
+				fmt.Printf("cd the path: %s\n", cwd)
+			}
+
+			// git init
+			command := exec.Command("git", "init")
+			_, err := command.Output()
+			if err != nil {
+				return err
+			}
 			return nil
 		},
 	}

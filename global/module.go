@@ -13,10 +13,10 @@ func GetModuleName() string {
 }
 
 func GetProjectName() string {
-	return parseProjectName(moduleName)
+	return ParseProjectName(moduleName)
 }
 
-func parseProjectName(name string) string {
+func ParseProjectName(name string) string {
 	seg := strings.Split(name, "/")
 
 	segLen := len(seg)
