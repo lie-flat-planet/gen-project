@@ -18,12 +18,27 @@ func (*Main) Content() string {
 package main
 
 import (
+	"github.com/lie-flat-planet/service-init-tool/command"
 	"%s/api/router"
+	"%s/config"
+	"github.com/spf13/cobra"
 )
 
-func main() {
-	router.Start()
+func init() {
+	command.AddCommand(
+		&cobra.Command{
+			Use: "migrate",
+			RunE: func(cmd *cobra.Command, args []string) error {
+				return config.Config.Mysql.MigrateAll()
+			},
+		})
 }
 
-`, global.GetModuleName()))
+func main() {
+	command.Execute(func(cmd *cobra.Command, args []string) {
+		router.Start()
+	})
+}
+
+`, global.GetModuleName(), global.GetModuleName()))
 }
