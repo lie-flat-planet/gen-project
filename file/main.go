@@ -17,6 +17,18 @@ func (*Main) Content() string {
 	return strings.TrimSpace(fmt.Sprintf(`
 package main
 
+// @title %s
+// @version 1.0
+// @description This is a %s
+// @termsOfService http://www.swagger.io/support
+
+// @contact.name API Support
+// @contact.url http://www.swagger.io/support
+// @contact.email support@swagger.io
+
+// @license.name Apache 2.0
+// @license.url http://www.apache.org/licenses/LICENSE-2.0.html
+
 import (
 	"github.com/lie-flat-planet/service-init-tool/command"
 	"%s/api/router"
@@ -40,5 +52,5 @@ func main() {
 	})
 }
 
-`, global.GetModuleName(), global.GetModuleName()))
+`, global.GetProjectName(), global.GetProjectName(), global.GetModuleName(), global.GetModuleName()))
 }
