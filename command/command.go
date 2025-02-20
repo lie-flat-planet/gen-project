@@ -31,7 +31,7 @@ Use "-h or --help" for more information about a command.
 var (
 	RootCMD = &cobra.Command{
 		Use:     "",
-		Short:   "gen-project " + VERSION,
+		Short:   "gen-project",
 		Long:    "automatically generate a go mvc web project",
 		Version: VERSION,
 		Example: `./gen-project github.com/your-group/your-project-name`,
