@@ -10,7 +10,7 @@ import (
 )
 
 const (
-	VERSION = "v1.0.3"
+	VERSION = "v1.0.6"
 )
 
 func init() {
@@ -31,7 +31,7 @@ Use "-h or --help" for more information about a command.
 var (
 	RootCMD = &cobra.Command{
 		Use:     "",
-		Short:   "gen-project",
+		Short:   "gen-project " + VERSION,
 		Long:    "automatically generate a go mvc web project",
 		Version: VERSION,
 		Example: `./gen-project github.com/your-group/your-project-name`,
