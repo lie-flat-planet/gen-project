@@ -19,12 +19,14 @@ func (*DemoHandler) Content() string {
 package demo
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/lie-flat-planet/httputil"
-	"%s/api/controller"
+	"%s/internal/controller"
+	"%s/internal/model"
 	"%s/config"
 )
-`+"type UserBody struct {\n\tName   string  `json:\"name\"`\n\tSalary float64 `json:\"salary\"`\n\tAge    int     `json:\"age\"`\n}\n\t"+`
+`+"type UserBody struct {\n\tName   string  `json:\"name\" binding:\"required\"`\n\tSalary float64 `json:\"salary\" binding:\"required\"`\n\tAge    int     `json:\"age\"` binding:\"required\"\n}\n\t"+`
 // FetchFirst
 // @BasePath /
 // PingExample godoc
@@ -37,12 +39,13 @@ import (
 // @Param Authorization header string true "Authorization bearer token"
 // @Param Body body UserBody true "body"
 // @Param userID query string true "用户id"
-// @Success 200 {object} resp.UserRESP 成功
+// @Success 200 {object} model.User 成功
 // @Failure 400 {object} httputil.ErrorRESP 失败
 // @Failure 500 {object} httputil.ErrorRESP 失败
 // @Router /monitor-gateway/api/v1/demo/hello-world [POST]
 // @ID FetchFirst
 func FetchFirst(ctx *gin.Context) {
+	var _ = model.User{}
 	userID := ctx.Query("userID")
 	fmt.Println("query userID:", userID)
 
@@ -51,7 +54,7 @@ func FetchFirst(ctx *gin.Context) {
 		(&httputil.RESP{
 			Content:     "",
 			ServiceCode: config.Config.Server.Code,
-			Err:         fmt.Errorf("body parse failed. err:%v", err),
+			Err:         fmt.Errorf("body parse failed. err:%%v", err),
 			HttpCode:    http.StatusBadRequest,
 		}).Output(ctx)
 		return
@@ -61,12 +64,18 @@ func FetchFirst(ctx *gin.Context) {
 	ctl := controller.FactoryDemo()
 
 	user, err := ctl.FetchFirst(ctx)
+	if err != nil {
+		(&httputil.RESP{
+			Content:     "",
+			ServiceCode: config.Config.Server.Code,
+			Err:         err,
+			HttpCode:    http.StatusBadRequest,
+		}).Output(ctx)
+		return
+	}
+
 	(&httputil.RESP{
-		Content: resp.UserRESP{
-			ID:       user.ID.ID,
-			Username: user.Username,
-			Nickname: user.Nickname,
-		},
+		Content: user,
 		ServiceCode: config.Config.Server.Code,
 		Err:         err,
 	}).Output(ctx)
