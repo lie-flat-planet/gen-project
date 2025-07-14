@@ -19,8 +19,9 @@ package config
 
 import (
 	tool "github.com/lie-flat-planet/service-init-tool"
-	"github.com/lie-flat-planet/service-init-tool/component/mysql"
+	"github.com/lie-flat-planet/service-init-tool/component/database"
 	"github.com/lie-flat-planet/service-init-tool/component/redis"
+	"github.com/lie-flat-planet/service-init-tool/component/prometheus"
 )
 
 func init() {
@@ -31,8 +32,9 @@ func init() {
 
 var Config = struct {
 	Server *tool.Server
-	Mysql  *mysql.Mysql
+	Mysql  *database.Mysql
 	Redis  *redis.Redis
+	Prom   *prometheus.Prom
 }{
 	Server: &tool.Server{
 		Name:     "%s",
@@ -40,8 +42,8 @@ var Config = struct {
 		HttpPort: 8081,
 		RunMode:  "debug",
 	},
-	Mysql: &mysql.Mysql{
-		Config: mysql.Config{
+	Mysql: &database.Mysql{
+		MysqlConf: database.MysqlConf{
 			Host:        "127.0.0.1:3306",
 			User:        "root",
 			Password:    "",
@@ -58,6 +60,9 @@ var Config = struct {
 			PoolSize: 5,
 			Timeout:  0,
 		},
+	},
+	Prom: &prometheus.Prom{
+		Addr: "1.2.3.4",
 	},
 }
 
