@@ -36,6 +36,8 @@ func (root *root) Children() []_interface.IDir {
 
 func (root *root) Files() []file.IFile {
 	return []file.IFile{
+		&file.CursorIgnore{},
+		&file.CursorRules{},
 		&file.GitIgnore{},
 		&file.Version{},
 		&file.Dockerfile{},

@@ -75,12 +75,16 @@ func FetchFirst(ctx *gin.Context) {
 	}
 
 	(&httputil.RESP{
-		Content: user,
+		Content: model.User{
+			Name:   "hello-world",
+			Age:    10,
+			Phone:  "xxx",
+		},
 		ServiceCode: config.Config.Server.Code,
 		Err:         err,
 	}).Output(ctx)
 
 	return
 }
-`, moduleName, moduleName))
+`, moduleName, moduleName, moduleName))
 }

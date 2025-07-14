@@ -14,5 +14,7 @@ func (g *GitIgnore) Content() string {
 .vscode
 
 local.yml
+.cursorignore
+.cursorrules
 `)
 }
