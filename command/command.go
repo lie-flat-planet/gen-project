@@ -10,12 +10,12 @@ import (
 )
 
 const (
-	VERSION = "v1.0.7"
+	VERSION = "v1.0.8"
 )
 
 func init() {
 	RootCMD.SetHelpTemplate(`Describe:
-  {{.Short}} - {{.Long}}
+  {{.Short}} {{.Version}} - {{.Long}}
 
 Usage:
   ./{{.Short}} moduleName
