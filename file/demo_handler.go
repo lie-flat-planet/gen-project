@@ -27,7 +27,7 @@ import (
 	"%s/internal/model"
 	"%s/config"
 )
-`+"type UserBody struct {\n\tName   string  `json:\"name\" binding:\"required\"`\n\tSalary float64 `json:\"salary\" binding:\"required\"`\n\tAge    int     `json:\"age\"` binding:\"required\"\n}\n\t"+`
+`+"type UserBody struct {\n\tName   string  `json:\"name\" binding:\"required\"`\n\tSalary float64 `json:\"salary\" binding:\"required\"`\n\tAge    int     `json:\"age\" binding:\"required\"`\n}\n\t"+`
 // FetchFirst
 // @BasePath /
 // PingExample godoc
@@ -64,7 +64,7 @@ func FetchFirst(ctx *gin.Context) {
 
 	ctl := controller.FactoryDemo()
 
-	user, err := ctl.FetchFirst(ctx)
+	_, err := ctl.FetchFirst(ctx)
 	if err != nil {
 		(&httputil.RESP{
 			Content:     "",
