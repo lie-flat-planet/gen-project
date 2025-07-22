@@ -23,7 +23,7 @@ import (
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
 	"%s/api/router/demo"
-	"%s/cmd/%s/docs"
+	_ "%s/cmd/%s/docs"
 	"%s/config"
 )
 
@@ -60,7 +60,7 @@ func (r *router) registerHandler() *router {
 }
 
 func (r *router) swagger() *router {
-	docs.SwaggerInfo.BasePath = "/%s/api/v1"
+	// docs.SwaggerInfo.BasePath = "/%s/api/v1"
 	r.ginEngine.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	return r
