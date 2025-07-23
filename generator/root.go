@@ -41,6 +41,7 @@ func (root *root) Files() []file.IFile {
 		&file.GitIgnore{},
 		&file.Version{},
 		&file.Dockerfile{},
+		&file.DockerfileDev{},
 		&file.GoMod{},
 		&file.Makefile{},
 	}

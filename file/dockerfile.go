@@ -16,24 +16,13 @@ func (d *Dockerfile) Content() string {
 	projectName := global.GetProjectName()
 
 	return strings.TrimSpace(fmt.Sprintf(`
-FROM golang:1.23 AS builder
-
-WORKDIR /go/src
-COPY ./ ./
-
-# build
-RUN make build WORKSPACE=%s
-
-# runtime
-FROM alpine:latest
-
-ARG PROJECT_NAME=%s
-
-COPY --from=builder /go/src/cmd/${PROJECT_NAME}/${PROJECT_NAME} /go/bin/${PROJECT_NAME}
+FROM debian:stable-slim
 
 EXPOSE 80
 
-WORKDIR /go/bin
-ENTRYPOINT ["/go/bin/%s"]
+WORKDIR /app
+COPY ./bin/%s /app/%s
+
+ENTRYPOINT ["/app/%s"]
 `, projectName, projectName, projectName))
 }
